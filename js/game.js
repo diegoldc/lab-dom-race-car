@@ -4,7 +4,14 @@ class Game {
         this.startScreen = document.querySelector("#game-intro")
         this.gameScreen = document.querySelector("#game-screen")
         this.gameEndScreen = document.querySelector("#game-end")
-        this.player = null
+        this.player = new Player(
+            this.gameScreen,
+            200,
+            500,
+            100,
+            150,
+            "./images/car.png" 
+        )
         this.height = 600
         this.width = 500
         this.obstacles = []
@@ -23,12 +30,12 @@ class Game {
         this.gameScreen.style.display = "block"
 
         this.gameIntervalId = setInterval(() => {
-            gameLoop()
+            this.gameLoop()
         }, this.gameLoopFrecuency)
     }
 
     gameLoop() {
-        update()
+        this.update()
 
         if (this.gameIsOver === true) {
             clearInterval(this.gameIntervalId)
@@ -36,6 +43,6 @@ class Game {
     }
 
     update() {
-
+        this.player.move()
     }
 }
